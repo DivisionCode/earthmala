@@ -6,10 +6,7 @@
       <ArtCard
         v-for="(art, index) in artworks"
         :key="index"
-        :title="art.title"
-        :image="art.image"
-        :description="art.description"
-        :price="art.price"
+        v-bind="art"
         @view = "openModal"
       />
     </div>
@@ -24,32 +21,24 @@
 import DefaultLayout from '@/layouts/DefaultLayout.vue';
 import ArtCard from '@/components/ArtCard.vue';
 import ArtModal from '../components/ArtModal.vue';
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 
-// Dummy Data (you can replace this later with real data from backend)
-const artworks = [
-  {
-    title: 'Sacred Geometry 01',
-    image: new URL('@/assets/vue.svg', import.meta.url).href,
-    description: 'A vibrant mandala inspired by spiritual balance.',
-    price: 120
-  },
-  {
-    title: 'Dot Mandala Sunrise',
-      image: new URL('@/assets/vue.svg', import.meta.url).href,
-    description: 'Dot mandala representing energy and light.',
-    price: 120
-  },
-  {
-    title: 'Healing Circles',
-      image: new URL('@/assets/vue.svg', import.meta.url).href,
-    description: 'Designed to center the mind and soul.',
-    price: 120
-  },
-  // Add more if you want
-];
-
+const artworks = ref([]);
 const selectedArt = ref(null);
+
+onMounted(async () => {
+  try {
+    const res = await fetch('http://localhost:5000/api/artworks');
+    const data = await res.json();
+
+    artworks.value = data.map(item => ({
+      _id: item._id,
+      ...item.artwork
+    }));
+  } catch(err) {
+    console.error('Failed to fetch artworks:', err);
+  }
+});
 
 function openModal(art) {
   selectedArt.value = art;
