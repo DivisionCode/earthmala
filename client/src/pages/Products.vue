@@ -1,8 +1,8 @@
 <template>
     <DefaultLayout>
-    <h1 class="text-3xl font-bold text-indigo-700 mb-6">Mandala Gallery</h1>
+    <h1>Mandala Gallery</h1>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    <div>
       <ArtCard
         v-for="(art, index) in artworks"
         :key="index"

@@ -17,10 +17,7 @@ app.use(express.json());
 
 app.use('/api/artworks', artworkRoutes);
 
-mongoose.connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-}).then(() => console.log('MongoDB Connected.'))
+mongoose.connect(process.env.MONGO_URI).then(() => console.log('MongoDB Connected.'))
 .catch((err) => console.error('Mongo Error: ', err) );
 
 export default app;
