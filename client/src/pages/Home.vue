@@ -29,7 +29,9 @@
       <div class="art-history">
           <p>
             <article>
-              In spiritual practice, creating or visualizing a mandala is a form of moving meditation. The symmetry calms the mind and restores emotional balance. In Tibetan Buddhism, monks spend days or weeks creating sand mandalas, then ceremonially destroy them—reminding us of impermanence and mindfulness.
+              In spiritual practice, creating or visualizing a mandala is a form of moving meditation. 
+              The symmetry calms the mind and restores emotional balance. In <strong>Tibetan Buddhism</strong>, 
+              monks spend days or weeks creating sand mandalas, then ceremonially destroy them—reminding us of impermanence and mindfulness.
             Today, mandalas are used in art therapy to help reduce <strong>stress</strong> and 
             <strong>reconnect</strong> with inner peace.
             </article>
@@ -41,14 +43,11 @@
             </p>
           </p>
       </div>
-
       <div class="footer">
-        <div>
-          <div class="social-links"></div>
-          <div class="faq"></div>
-        </div>
-       <div class="copyright-details"></div>
+        <img class="border-line" src="../assets/border.png">
+        <p><strong>अर्थ</strong> Mala&#174; &copy; All Rights Reserved @2025</p>
       </div>
+
 
   </DefaultLayout>
 </template>
@@ -70,7 +69,7 @@ import DefaultLayout from '@/layouts/DefaultLayout.vue';
   height: 2.5em;
   height: auto;
   padding-top: 0.2em;
-
+  color: #c3592bb2;
   strong {
     color: #c3592b;
   }
@@ -95,7 +94,6 @@ import DefaultLayout from '@/layouts/DefaultLayout.vue';
     letter-spacing: 0.10em;
 
   }
-
 }
 .mandala-art {
   justify-self: center;
@@ -133,5 +131,54 @@ transition: all 0.20s ease-in-out;
     em {
       padding-top: 1.5em;
     }
+
+    strong {
+      color: #c3592b;
+    }
+}
+
+.footer {
+  justify-self: center;
+  .border-line {
+  height:12em;
+  width:20em;
+  }
+  p {
+    font-weight: 200;
+    letter-spacing: 0.05em;
+    strong {
+      color: #c3592b;
+    }
+  }
+}
+
+
+
+
+@media (max-width: 768px) {
+.brand-logo {
+  font-size: 4.5em;
+}
+
+.brand-title {
+  font-size: 1.2em;
+  letter-spacing: 0.05em;
+}
+
+.art-gallery{
+  grid-template-columns: 1fr;
+}
+
+.art-history{
+  margin-bottom: 0.5em;
+  margin-right: 1.5em;
+  margin-left: 1.5em;
+  margin-top: 2.5em;
+
+
+    em {
+      padding-top: 1.5em;
+    }
+}
 }
 </style>
