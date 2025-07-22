@@ -34,7 +34,7 @@
             </blockquote>
       </div>
       <div class="footer">
-        <img class="border-line" src="/images/border.avif">
+        <img class="border-line" src="/images/border.webp">
         <p><strong>अर्थ</strong> Mala&#174; &copy; All Rights Reserved @2025</p>
       </div>
 
@@ -45,10 +45,10 @@
 <script setup>
 import { useRouter } from 'vue-router';
 import DefaultLayout from '@/layouts/DefaultLayout.vue';
-import lippanArt from '/images/lippanart.avif';
-import mandalaArt from '/images/mirrorart.avif';
-import embroideryArt from '/images/stitchingart.avif';
-import crochetArt from '/images/crochetart.avif';
+import lippanArt from '/images/lippanart.webp';
+import mandalaArt from '/images/mirrorart.webp';
+import embroideryArt from '/images/stitchingart.webp';
+import crochetArt from '/images/crochetart.webp';
 const router = useRouter();
 
 const galleryItems = [

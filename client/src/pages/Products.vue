@@ -1,5 +1,5 @@
 <template>
-  <DefaultLayout>
+  <DefaultProductPage>
     <div class="product-page">
       <h1 class="heading">Category: {{ route.query.category }}</h1>
 
@@ -18,12 +18,13 @@
         </div>
       </div>
     </div>
-  </DefaultLayout>
+  </DefaultProductPage>
 </template>
 
 <script setup>
 import { useRoute } from 'vue-router';
 import DefaultLayout from '@/layouts/DefaultLayout.vue';
+import DefaultProductPage from '@/layouts/DefaultProductPage.vue';
 // import ArtCard from '@/components/ArtCard.vue';
 // import ArtModal from '../components/ArtModal.vue';
 import { ref,computed, onMounted } from 'vue';
@@ -34,7 +35,6 @@ const route = useRoute();
 const store = useArtworkStore()
 
 const category = computed(() => route.query.category?.toLowerCase());
-console.log(category);
 
 const filteredArtworks = computed(() => {
   if (!store.artworks) return []
