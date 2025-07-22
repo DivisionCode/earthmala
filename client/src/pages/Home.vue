@@ -8,26 +8,17 @@
           -"Art that Heals. Patterns that Speak."
         </div>
       </div>
-      <div class="art-gallery">
-        <div>
-          <img class="mandala-art" src="../assets/lipanart.jpg">
-          <p>Lipan Art</p>
-        </div>
-        <div>
-          <img class="mandala-art" src="../assets/mirrorart.jpg">
-          <p>Mandala</p>
-        </div>
-        <div>
-          <img class="mandala-art" src="../assets/stitchingart.jpg">
-          <p>Embroidery</p>
-        </div>
-        <div>
-          <img class="mandala-art" src="../assets/crochetart.jpg">
-          <p>Crochet Art</p>
-        </div>
+    <div class="art-gallery">
+      <div
+        v-for="item in galleryItems"
+        :key="item.label"
+        @click="goToCategory(item.label)"
+      >
+        <img class="mandala-art" :src="item.src" />
+        <p>{{ item.label }}</p>
       </div>
+    </div>
       <div class="art-history">
-          <p>
             <article>
               In spiritual practice, creating or visualizing a mandala is a form of moving meditation. 
               The symmetry calms the mind and restores emotional balance. In <strong>Tibetan Buddhism</strong>, 
@@ -35,16 +26,15 @@
             Today, mandalas are used in art therapy to help reduce <strong>stress</strong> and 
             <strong>reconnect</strong> with inner peace.
             </article>
-            <p>
+            <blockquote>
               <em>
                 "Inhale calm. Exhale creation.”
                 — <strong>अर्थ</strong> Mala
               </em>
-            </p>
-          </p>
+            </blockquote>
       </div>
       <div class="footer">
-        <img class="border-line" src="../assets/border.png">
+        <img class="border-line" src="../assets/border.avif">
         <p><strong>अर्थ</strong> Mala&#174; &copy; All Rights Reserved @2025</p>
       </div>
 
@@ -53,7 +43,24 @@
 </template>
 
 <script setup>
+import { useRouter } from 'vue-router';
 import DefaultLayout from '@/layouts/DefaultLayout.vue';
+import lippanArt from '@/assets/lippanart.avif';
+import mandalaArt from '@/assets/mirrorart.avif';
+import embroideryArt from '@/assets/stitchingart.avif';
+import crochetArt from '@/assets/crochetart.avif';
+const router = useRouter();
+
+const galleryItems = [
+  { label: 'Lipan Art', src: lippanArt },
+  { label: 'Mandala', src: mandalaArt },
+  { label: 'Embroidery', src: embroideryArt },
+  { label: 'Crochet Art', src: crochetArt },
+];
+
+function goToCategory(category) {
+  router.push({ name: 'Products', query: { category } });
+}
 </script>
 
 <style lang="css" scoped>

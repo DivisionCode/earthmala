@@ -1,59 +1,63 @@
 <template>
-    <DefaultLayout>
-      <div>
-        <p>
-          Launching Soon ...
-        </p>
+  <DefaultLayout>
+    <div class="product-page">
+      <h1 class="heading">Category: {{ route.query.category }}</h1>
+
+      <div v-if="store.loading" class="loading">Loading...</div>
+
+      <div v-else-if="filteredArtworks.length === 0" class="empty">
+        No artworks found for this category.
       </div>
-    <!-- <h1>Mandala Gallery</h1>
 
-    <div>
-      <ArtCard
-        v-for="(art, index) in artworks"
-        :key="index"
-        v-bind="art"
-        @view = "openModal"
-      />
+      <div class="gallery">
+        <div class="card" v-for="art in filteredArtworks" :key="art._id">
+          <img :src="art.image" alt="Artwork Image" />
+          <h2>{{ art.title }}</h2>
+          <p>{{ art.description }}</p>
+          <p class="price">₹{{ art.price }}</p>
+        </div>
+      </div>
     </div>
-
-    <ArtModal v-if="selectedArt" :art="selectedArt" @close="selectedArt = null" ></ArtModal> -->
-
-    </DefaultLayout>
-
+  </DefaultLayout>
 </template>
 
 <script setup>
+import { useRoute } from 'vue-router';
 import DefaultLayout from '@/layouts/DefaultLayout.vue';
 // import ArtCard from '@/components/ArtCard.vue';
 // import ArtModal from '../components/ArtModal.vue';
-// import { ref, onMounted } from 'vue';
+import { ref,computed, onMounted } from 'vue';
+import { useArtworkStore } from '@/stores/artworkstore';
 
-// const artworks = ref([]);
-// const selectedArt = ref(null);
+const selectedArt = ref(null);
+const route = useRoute();
+const store = useArtworkStore()
 
-// onMounted(async () => {
-//   try {
-//     const res = await fetch(`${import.meta.env.VITE_API_URL}/api/artworks`);
-//     const data = await res.json();
+const category = computed(() => route.query.category?.toLowerCase());
+console.log(category);
 
-//     artworks.value = data.map(item => ({
-//       _id: item._id,
-//       ...item.artwork
-//     }));
-//   } catch(err) {
-//     console.error('Failed to fetch artworks:', err);
-//   }
-// });
+const filteredArtworks = computed(() => {
+  if (!store.artworks) return []
+  return store.artworks.filter(art => 
+    art.category?.toLowerCase() === category.value
+  );
+})
 
-// function openModal(art) {
-//   selectedArt.value = art;
-// }
+onMounted(async () => {
+  if(!store.artworks.length) {
+  store.fetchArtworks()
+  }
+});
+
+function openModal(art) {
+  selectedArt.value = art;
+}
 </script>
 
 <style lang="css" scoped>
 div {
   justify-self: center;
-  font-size: 5em;
+  font-size: 1.5em;
   font-weight: 200;
   color: black;
   z-index: 1;
