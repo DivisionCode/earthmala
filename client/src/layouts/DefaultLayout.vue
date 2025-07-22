@@ -1,6 +1,6 @@
 <template>
   <div class="background-image-blur">
-    <img class="blurred-img" src="../assets/bg.avif">
+    <img class="blurred-img" src="/images/bg.avif">
   </div>
   <div class="main">
     <nav >
